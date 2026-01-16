@@ -1,5 +1,7 @@
 import flet as ft
 from UI.alert import AlertManager
+from database.dao import DAO
+
 
 class View:
     def __init__(self, page: ft.Page):
@@ -30,7 +32,10 @@ class View:
         self.txt_titolo = ft.Text(value="Gestione Vendita Biciclette", size=30, weight=ft.FontWeight.BOLD)
 
         # Riga 1
-        self.dd_category = ft.Dropdown(label="Categoria", width=200) # TODO: Gestire il dropdown
+        self.dd_category = ft.Dropdown(label="Categoria", width=200)
+        # TODO: Gestire il dropdown
+
+        self.dd_category.options=[ft.dropdown.Option(a) for a in self.controller.riempi()]
 
         self.dp1 = ft.DatePicker(
             on_change=lambda e: print(f"Giorno selezionato: {self.dp1.value}"),
